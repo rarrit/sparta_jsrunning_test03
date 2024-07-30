@@ -30,12 +30,12 @@ function task3() {
 async function runTasksSequential() {
   console.time("Sequential");
   try {
-    const result1 = await task1();
-    console.log(result1);
-    const result2 = await task2();
-    console.log(result2);
-    const result3 = await task3();
-    console.log(result3);
+    const result1 = await task1(); // [!] 실행이 끝나야
+    console.log(result1); // [!] 콘솔이 찍힘
+    const result2 = await task2(); // [!] 실행이 끝나야
+    console.log(result2); // [!] 콘솔이 찍힘
+    const result3 = await task3(); // [!] 실행이 끝나야
+    console.log(result3); // [!] 콘솔이 찍힘
   } catch (error) {
     console.error("Error:", error);
   }
@@ -50,7 +50,7 @@ async function runTasksParallel() {
   console.time("Parallel");
   try {
     // 병렬로 promise들을 한 번에 처리하는 코드
-    const results = Promise.all([task1, task2, task3])
+    const results = Promise.all([task1(), task2(), task3()]); // new
     results.forEach((result) => console.log(result));
   } catch (error) {
     console.error("Error:", error);
