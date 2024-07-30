@@ -38,9 +38,11 @@ function taskC() {
 }
 
 
-function findFirstCompletedTask() {
-  result = Promise.race([taskA, taskB, taskC]);
+async function findFirstCompletedTask() {
+  const result = await Promise.race([taskA(), taskB(), taskC()]);
   console.log(result);
 }
 
 findFirstCompletedTask();
+
+
